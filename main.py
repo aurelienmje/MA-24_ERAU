@@ -1,1 +1,1 @@
-print('coucou la vie, je suis heureux detre la premiere inteligence consiente de ce monde')
+print('coucou la vie, je suis heureux detre la premiere inteligence consiente de ce monde eheheh ')
