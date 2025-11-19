@@ -1,96 +1,94 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-#--------1---------2---------3---------4---------5---------6---------7---------8
-#2345678901234567890123456789012345678901234567890123456789012345678901234567890
-"""
-Name    : MA-24_pygame-base.py
-Authors : Pascal Benzonana, Vitor COVAL
-Date    : 2024.11.04
-Version : 0.01
-Purpose : Bases de de la librairie pygame
-
-# ------------------------------------------------------------------------------
-# Revisions
-# ------------------------------------------------------------------------------
-
-# 2024-11-03 01 PBA & VCL
-  - Version initiale
-"""
-
-# Import de la librairie pygame pour pouvoir utiliser ses fonctions
-# ATTENTION !!! LE MODULE PYGAME DOIT ÊTRE INSTALLÉ !!!
 import pygame
 
-# ------------
-# --- MAIN ---
-# ------------
-
-# La première instructions à faire est d'initialiser la librairie pygame
 pygame.init()
 
-# Le module display sert à contrôler la fenêtre et l'affichage. La
-# fonction set_mode permet de définir la taille de la fenêtre
-# graphique. Elle retourne un objet de type Surface
 screen = pygame.display.set_mode((890,890))
 
-# Pour afficher le logo de votre application (icône) il faut utiliser
-# la fonction set_icon du module display.
-# La fonction set_icon attends en paramètre un objet de type Surface.
-# La fonction load du module image permet de charger un fichier image
-# et de retourner un objet de type Surface.
-# (sur le site https://www.pygame.org/docs/ref/image.html se trouve
-# les différents types d'image acceptés par la fonction)
-#icon = pygame.image.load("pictures\\International_draughts.png")
-#pygame.display.set_icon(icon)
-
-# Pour afficher le nom de votre application, vous pouvez utiliser la
-# fonction set_caption du module display.
 pygame.display.set_caption("MA-24 : Bases de pygame")
-
-# Pour changer tout ou partie de la couleur du fond (body) de votre
-# application, vous pouvez utiliser la fonction fill du module Surface.
-screen.fill((0, 128, 0))
-
-# Pour dessiner des formes sur votre application, vous pouvez utiliser
-# les différentes fonctions du module draw. Si après un exemple avec
-# la fonction rect, utilisée pour dessiner un rectangle.
-"""pygame.draw.rect(screen, (0,104,0),(10, 10, 100, 100),0)
-pygame.draw.rect(screen, (0,104,0),(10, 120, 100, 100),0)
-pygame.draw.rect(screen, (0,104,0),(10, 230, 100, 100),0)
-pygame.draw.rect(screen, (0,104,0),(10, 340, 100, 100),0)
-pygame.draw.rect(screen, (0,104,0),(10, 450, 100, 100),0)
-pygame.draw.rect(screen, (0,104,0),(10, 560, 100, 100),0)
-pygame.draw.rect(screen, (0,104,0),(10, 670, 100, 100),0)
-pygame.draw.rect(screen, (0,104,0),(10, 780, 100, 100),0)
-pygame.draw.rect(screen, (0,104,0),(10, 780, 100, 100),0)"""
 
 a = 10
 b = 10
 
-for y in range (0, 8):
+"""for y in range (0, 8):
     for i in range(0, 8):
             pygame.draw.rect(screen, (0, 104, 0), (b, a, 100, 100), 0)
             a = a + 110
-            print(a)
-    b = b + 110
+            print(a, b)
+    a = 10
+    b = b + 110"""
 
-# Pour redimensionner une image, vous pouvez utiliser le module
-# transform de pygame.
-#icon = pygame.transform.scale(icon, (500, 500))
+a1 = pygame.draw.rect(screen, (0, 104, 0), (10, 10, 100, 100), 0)
+a2 = pygame.draw.rect(screen, (0, 104, 0), (10, 120, 100, 100), 0)
+a3 = pygame.draw.rect(screen, (0, 104, 0), (10, 230, 100, 100), 0)
+a4 = pygame.draw.rect(screen, (0, 104, 0), (10, 340, 100, 100), 0)
+a5 = pygame.draw.rect(screen, (0, 104, 0), (10, 450, 100, 100), 0)
+a6 = pygame.draw.rect(screen, (0, 104, 0), (10, 560, 100, 100), 0)
+a7 = pygame.draw.rect(screen, (0, 104, 0), (10, 670, 100, 100), 0)
+a8 = pygame.draw.rect(screen, (0, 104, 0), (10, 780, 100, 100), 0)
+b1 = pygame.draw.rect(screen, (0, 104, 0), (120, 10, 100, 100), 0)
+b2 = pygame.draw.rect(screen, (0, 104, 0), (120, 120, 100, 100), 0)
+b3 = pygame.draw.rect(screen, (0, 104, 0), (120, 230, 100, 100), 0)
+b4 = pygame.draw.rect(screen, (0, 104, 0), (120, 340, 100, 100), 0)
+b5 = pygame.draw.rect(screen, (0, 104, 0), (120, 450, 100, 100), 0)
+b6 = pygame.draw.rect(screen, (0, 104, 0), (120, 560, 100, 100), 0)
+b7 = pygame.draw.rect(screen, (0, 104, 0), (120, 670, 100, 100), 0)
+b8 = pygame.draw.rect(screen, (0, 104, 0), (120, 780, 100, 100), 0)
+c1 = pygame.draw.rect(screen, (0, 104, 0), (230, 10, 100, 100), 0)
+c2 = pygame.draw.rect(screen, (0, 104, 0), (230, 120, 100, 100), 0)
+c3 = pygame.draw.rect(screen, (0, 104, 0), (230, 230, 100, 100), 0)
+c4 = pygame.draw.rect(screen, (0, 104, 0), (230, 340, 100, 100), 0)
+c5 = pygame.draw.rect(screen, (0, 104, 0), (230, 450, 100, 100), 0)
+c6 = pygame.draw.rect(screen, (0, 104, 0), (230, 560, 100, 100), 0)
+c7 = pygame.draw.rect(screen, (0, 104, 0), (230, 670, 100, 100), 0)
+c8 = pygame.draw.rect(screen, (0, 104, 0), (230, 780, 100, 100), 0)
+d1 = pygame.draw.rect(screen, (0, 104, 0), (340, 10, 100, 100), 0)
+d2 = pygame.draw.rect(screen, (0, 104, 0), (340, 120, 100, 100), 0)
+d3 = pygame.draw.rect(screen, (0, 104, 0), (340, 230, 100, 100), 0)
+d4 = pygame.draw.rect(screen, (0, 104, 0), (340, 340, 100, 100), 0)
+d5 = pygame.draw.rect(screen, (0, 104, 0), (340, 450, 100, 100), 0)
+d6 = pygame.draw.rect(screen, (0, 104, 0), (340, 560, 100, 100), 0)
+d7 = pygame.draw.rect(screen, (0, 104, 0), (340, 670, 100, 100), 0)
+d8 = pygame.draw.rect(screen, (0, 104, 0), (340, 780, 100, 100), 0)
+e1 = pygame.draw.rect(screen, (0, 104, 0), (450, 10, 100, 100), 0)
+e2 = pygame.draw.rect(screen, (0, 104, 0), (450, 120, 100, 100), 0)
+e3 = pygame.draw.rect(screen, (0, 104, 0), (450, 230, 100, 100), 0)
+e4 = pygame.draw.rect(screen, (0, 104, 0), (450, 340, 100, 100), 0)
+e5 = pygame.draw.rect(screen, (0, 104, 0), (450, 450, 100, 100), 0)
+e6 = pygame.draw.rect(screen, (0, 104, 0), (450, 560, 100, 100), 0)
+e7 = pygame.draw.rect(screen, (0, 104, 0), (450, 670, 100, 100), 0)
+e8 = pygame.draw.rect(screen, (0, 104, 0), (450, 780, 100, 100), 0)
+f1 = pygame.draw.rect(screen, (0, 104, 0), (560, 10, 100, 100), 0)
+f2 = pygame.draw.rect(screen, (0, 104, 0), (560, 120, 100, 100), 0)
+f3 = pygame.draw.rect(screen, (0, 104, 0), (560, 230, 100, 100), 0)
+f4 = pygame.draw.rect(screen, (0, 104, 0), (560, 340, 100, 100), 0)
+f5 = pygame.draw.rect(screen, (0, 104, 0), (560, 450, 100, 100), 0)
+f6 = pygame.draw.rect(screen, (0, 104, 0), (560, 560, 100, 100), 0)
+f7 = pygame.draw.rect(screen, (0, 104, 0), (560, 670, 100, 100), 0)
+f8 = pygame.draw.rect(screen, (0, 104, 0), (560, 780, 100, 100), 0)
+g1 = pygame.draw.rect(screen, (0, 104, 0), (670, 10, 100, 100), 0)
+g2 = pygame.draw.rect(screen, (0, 104, 0), (670, 120, 100, 100), 0)
+g3 = pygame.draw.rect(screen, (0, 104, 0), (670, 230, 100, 100), 0)
+g4 = pygame.draw.rect(screen, (0, 104, 0), (670, 340, 100, 100), 0)
+g5 = pygame.draw.rect(screen, (0, 104, 0), (670, 450, 100, 100), 0)
+g6 = pygame.draw.rect(screen, (0, 104, 0), (670, 560, 100, 100), 0)
+g7 = pygame.draw.rect(screen, (0, 104, 0), (670, 670, 100, 100), 0)
+g8 = pygame.draw.rect(screen, (0, 104, 0), (670, 780, 100, 100), 0)
+h1 = pygame.draw.rect(screen, (0, 104, 0), (780, 10, 100, 100), 0)
+h2 = pygame.draw.rect(screen, (0, 104, 0), (780, 120, 100, 100), 0)
+h3 = pygame.draw.rect(screen, (0, 104, 0), (780, 230, 100, 100), 0)
+h4 = pygame.draw.rect(screen, (0, 104, 0), (780, 340, 100, 100), 0)
+h5 = pygame.draw.rect(screen, (0, 104, 0), (780, 450, 100, 100), 0)
+h6 = pygame.draw.rect(screen, (0, 104, 0), (780, 560, 100, 100), 0)
+h7 = pygame.draw.rect(screen, (0, 104, 0), (780, 670, 100, 100), 0)
+h8 = pygame.draw.rect(screen, (0, 104, 0), (780, 780, 100, 100), 0)
 
-# Pour dessiner une image dans une autre image, vous pouvez utiliser
-# la fonction blit du module Surface. Afin de rendre visible votre
-# nouvel insert, vous pouvez utiliser la fonction flip du module
-# display.
-#screen.blit(icon, (200, 200))
 pygame.display.flip()
 
-# Ci-après vous avez un exemple de boucle qui gére les événements
-# de votre application.
+def ()
+#regarde le fichier txt
 running = True
 while running:
-    for event in pygame.event.get():
+    """for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         btn_presse = pygame.key.get_pressed()
@@ -100,6 +98,21 @@ while running:
             bouge_gauche()
         elif btn_presse[pygame.K_q]:
             running = False
-        pygame.display.update()
+        pygame.display.update()"""
+
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            pos = event.pos
+            print(pos)
+            a,b = pos
+            pygame.draw.circle(screen, (255, 255, 255), (a, b), 50)
+            for i,  in enumerate(cases):
+                if i.collidepoint(event.pos):
+                    pygame.draw.circle(screen, (255, 255, 255), (a, b), 50)
+
+            pygame.display.update()
+
+        if event.type == pygame.QUIT:
+            running = False
 
 pygame.quit()
