@@ -32,7 +32,7 @@ pygame.init()
 # Le module display sert à contrôler la fenêtre et l'affichage. La
 # fonction set_mode permet de définir la taille de la fenêtre
 # graphique. Elle retourne un objet de type Surface
-screen = pygame.display.set_mode((500,300))
+screen = pygame.display.set_mode((890,890))
 
 # Pour afficher le logo de votre application (icône) il faut utiliser
 # la fonction set_icon du module display.
@@ -41,7 +41,7 @@ screen = pygame.display.set_mode((500,300))
 # et de retourner un objet de type Surface.
 # (sur le site https://www.pygame.org/docs/ref/image.html se trouve
 # les différents types d'image acceptés par la fonction)
-icon = pygame.image.load("pictures\\International_draughts.png")
+#icon = pygame.image.load("pictures\\International_draughts.png")
 #pygame.display.set_icon(icon)
 
 # Pour afficher le nom de votre application, vous pouvez utiliser la
@@ -50,22 +50,40 @@ pygame.display.set_caption("MA-24 : Bases de pygame")
 
 # Pour changer tout ou partie de la couleur du fond (body) de votre
 # application, vous pouvez utiliser la fonction fill du module Surface.
-screen.fill((89, 152, 255))
+screen.fill((0, 128, 0))
 
 # Pour dessiner des formes sur votre application, vous pouvez utiliser
 # les différentes fonctions du module draw. Si après un exemple avec
 # la fonction rect, utilisée pour dessiner un rectangle.
-pygame.draw.rect(screen, (10,10,10),(10, 10, 30, 20),0)
+"""pygame.draw.rect(screen, (0,104,0),(10, 10, 100, 100),0)
+pygame.draw.rect(screen, (0,104,0),(10, 120, 100, 100),0)
+pygame.draw.rect(screen, (0,104,0),(10, 230, 100, 100),0)
+pygame.draw.rect(screen, (0,104,0),(10, 340, 100, 100),0)
+pygame.draw.rect(screen, (0,104,0),(10, 450, 100, 100),0)
+pygame.draw.rect(screen, (0,104,0),(10, 560, 100, 100),0)
+pygame.draw.rect(screen, (0,104,0),(10, 670, 100, 100),0)
+pygame.draw.rect(screen, (0,104,0),(10, 780, 100, 100),0)
+pygame.draw.rect(screen, (0,104,0),(10, 780, 100, 100),0)"""
+
+a = 10
+b = 10
+
+for y in range (0, 8):
+    for i in range(0, 8):
+            pygame.draw.rect(screen, (0, 104, 0), (b, a, 100, 100), 0)
+            a = a + 110
+            print(a)
+    b = b + 110
 
 # Pour redimensionner une image, vous pouvez utiliser le module
 # transform de pygame.
-icon = pygame.transform.scale(icon, (500, 500))
+#icon = pygame.transform.scale(icon, (500, 500))
 
 # Pour dessiner une image dans une autre image, vous pouvez utiliser
 # la fonction blit du module Surface. Afin de rendre visible votre
 # nouvel insert, vous pouvez utiliser la fonction flip du module
 # display.
-screen.blit(icon, (200, 200))
+#screen.blit(icon, (200, 200))
 pygame.display.flip()
 
 # Ci-après vous avez un exemple de boucle qui gére les événements
