@@ -5,7 +5,7 @@ import sys
 pygame.init()
 
 # --- CONSTANTES ---
-TAILLE_CASE = 80
+TAILLE_CASE = 50
 NB_CASES = 8
 LARGEUR = NB_CASES * TAILLE_CASE
 HAUTEUR = NB_CASES * TAILLE_CASE
@@ -15,7 +15,7 @@ VERT = (0, 180, 0)
 
 # --- FENÊTRE ---
 screen = pygame.display.set_mode((LARGEUR, HAUTEUR))
-pygame.display.set_caption("Échecs - Plateau simple")
+pygame.display.set_caption("plateau de jeu othello")
 
 # --- TABLEAU DE JEU (8x8) ---
 game = [
@@ -33,17 +33,17 @@ game = [
 selected = (-1, -1)
 
 
-# --- DESSIN DU DAMIER ---
+
 def draw_board():
     for li in range(8):
         for col in range(8):
-            # Plateau entièrement blanc
-            pygame.draw.rect(screen, BLANC,
+            # Plateau vert
+            pygame.draw.rect(screen, (0, 255, 0),
                              (col * TAILLE_CASE, li * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE))
 
             # Case sélectionnée entourée en vert
             if (li, col) == selected:
-                pygame.draw.rect(screen, VERT,
+                pygame.draw.rect(screen, (255, 0, 0),
                                  (col * TAILLE_CASE, li * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE), 5)
 
 
@@ -62,14 +62,14 @@ def get_case_from_mouse(pos):
 clock = pygame.time.Clock()
 
 while True:
-    screen.fill((0, 120, 0))  # fond vert foncé
+      # fond vert foncé
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
-        # CLIC SOURIS
+        # clic souris
         if event.type == pygame.MOUSEBUTTONDOWN:
             case = get_case_from_mouse(event.pos)
             if case:
@@ -82,7 +82,7 @@ while True:
                 else:
                     selected = (li, col)
 
-    # Affichage
+
     draw_board()
 
     pygame.display.flip()
