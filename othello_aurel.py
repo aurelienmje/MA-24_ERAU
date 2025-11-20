@@ -38,6 +38,21 @@ DIRS = [
     (-1, 0), (1, 0), (0, -1), (0, 1),
     (-1, -1), (-1, 1), (1, -1), (1, 1)
 ]
+easter_egg_counter = 0
+EASTER_EGG_TRIGGER = (3, 4)  # ligne, colonne du pion noir de départ
+
+def show_easter_egg_popup():
+    import tkinter as tk
+    root = tk.Tk()
+    root.title("Easter Egg !")
+
+    label = tk.Label(root, text="j'ai utilisé mon code de l'année passée ", font=("Arial", 15))
+    label.pack(padx=20, pady=20)
+
+    close_btn = tk.Button(root, text="Fermer", command=root.destroy)
+    close_btn.pack(pady=10)
+
+    root.mainloop()
 
 
 # --- FONCTION : coups valides ---
@@ -120,6 +135,9 @@ clock = pygame.time.Clock()
 while True:
     valid_moves = get_valid_moves(current_player)
 
+    # Vérification du clic pour l'easter egg
+
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -129,6 +147,13 @@ while True:
             x, y = event.pos
             col = x // TAILLE_CASE
             li = y // TAILLE_CASE
+
+            # Vérification du clic pour l'easter egg
+            if (li, col) == EASTER_EGG_TRIGGER:
+                easter_egg_counter += 1
+
+                if easter_egg_counter == 5:
+                    show_easter_egg_popup()
 
             if (li, col) in valid_moves:
                 play_move(li, col, current_player)
