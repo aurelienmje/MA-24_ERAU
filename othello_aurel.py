@@ -1,165 +1,124 @@
 import pygame
-import sys
+
+# DÉFINITION DES VARIABLES :
+
+color_circle = (0, 0, 0)
+
+# PRÉPARATION DE PYGAME ET DE LA FENÊTRE
 
 pygame.init()
 
-# --- CONSTANTES ---
-TAILLE_CASE = 80
-NB_CASES = 8
-LARGEUR = NB_CASES * TAILLE_CASE
-HAUTEUR = NB_CASES * TAILLE_CASE
+screen = pygame.display.set_mode((890,890))
+screen.fill((0,128,0))
 
-VERT_FOND = (0, 160, 0)
-NOIR = (10, 10, 10)
-BLANC = (240, 240, 240)
-BLEU = (0, 120, 255)
-
-# --- FENÊTRE ---
-screen = pygame.display.set_mode((LARGEUR, HAUTEUR))
-pygame.display.set_caption("Othello / Reversi")
-
-# --- TABLEAU DE JEU ---
-# 0 = vide
-# 1 = noir
-# 2 = blanc
-game = [[0] * 8 for _ in range(8)]
-
-# position initiale
-game[3][3] = 2
-game[4][4] = 2
-game[3][4] = 1
-game[4][3] = 1
-
-# Joueur actuel : 1 (noir) commence
-current_player = 1
-
-# Directions Othello
-DIRS = [
-    (-1, 0), (1, 0), (0, -1), (0, 1),
-    (-1, -1), (-1, 1), (1, -1), (1, 1)
-]
-easter_egg_counter = 0
-EASTER_EGG_TRIGGER = (3, 4)  # ligne, colonne du pion noir de départ
-
-def show_easter_egg_popup():
-    import tkinter as tk
-    root = tk.Tk()
-    root.title("Easter Egg !")
-
-    label = tk.Label(root, text="j'ai utilisé mon code de l'année passée ", font=("Arial", 15))
-    label.pack(padx=20, pady=20)
-
-    close_btn = tk.Button(root, text="Fermer", command=root.destroy)
-    close_btn.pack(pady=10)
-
-    root.mainloop()
+pygame.display.set_caption("MA-24 : Bases de pygame")
 
 
-# --- FONCTION : coups valides ---
-def get_valid_moves(player):
-    opponent = 2 if player == 1 else 1
-    valid = []
+# DÉFINITION DES CASES :
 
-    for li in range(8):
-        for col in range(8):
-            if game[li][col] != 0:
-                continue
+a1 = pygame.draw.rect(screen, (0, 104, 0), (10, 10, 100, 100), border_radius=20)
+a2 = pygame.draw.rect(screen, (0, 104, 0), (10, 120, 100, 100), border_radius=20)
+a3 = pygame.draw.rect(screen, (0, 104, 0), (10, 230, 100, 100), border_radius=20)
+a4 = pygame.draw.rect(screen, (0, 104, 0), (10, 340, 100, 100), border_radius=20)
+a5 = pygame.draw.rect(screen, (0, 104, 0), (10, 450, 100, 100), border_radius=20)
+a6 = pygame.draw.rect(screen, (0, 104, 0), (10, 560, 100, 100), border_radius=20)
+a7 = pygame.draw.rect(screen, (0, 104, 0), (10, 670, 100, 100), border_radius=20)
+a8 = pygame.draw.rect(screen, (0, 104, 0), (10, 780, 100, 100), border_radius=20)
+b1 = pygame.draw.rect(screen, (0, 104, 0), (120, 10, 100, 100), border_radius=20)
+b2 = pygame.draw.rect(screen, (0, 104, 0), (120, 120, 100, 100), border_radius=20)
+b3 = pygame.draw.rect(screen, (0, 104, 0), (120, 230, 100, 100), border_radius=20)
+b4 = pygame.draw.rect(screen, (0, 104, 0), (120, 340, 100, 100), border_radius=20)
+b5 = pygame.draw.rect(screen, (0, 104, 0), (120, 450, 100, 100), border_radius=20)
+b6 = pygame.draw.rect(screen, (0, 104, 0), (120, 560, 100, 100), border_radius=20)
+b7 = pygame.draw.rect(screen, (0, 104, 0), (120, 670, 100, 100), border_radius=20)
+b8 = pygame.draw.rect(screen, (0, 104, 0), (120, 780, 100, 100), border_radius=20)
+c1 = pygame.draw.rect(screen, (0, 104, 0), (230, 10, 100, 100), border_radius=20)
+c2 = pygame.draw.rect(screen, (0, 104, 0), (230, 120, 100, 100), border_radius=20)
+c3 = pygame.draw.rect(screen, (0, 104, 0), (230, 230, 100, 100), border_radius=20)
+c4 = pygame.draw.rect(screen, (0, 104, 0), (230, 340, 100, 100), border_radius=20)
+c5 = pygame.draw.rect(screen, (0, 104, 0), (230, 450, 100, 100), border_radius=20)
+c6 = pygame.draw.rect(screen, (0, 104, 0), (230, 560, 100, 100), border_radius=20)
+c7 = pygame.draw.rect(screen, (0, 104, 0), (230, 670, 100, 100), border_radius=20)
+c8 = pygame.draw.rect(screen, (0, 104, 0), (230, 780, 100, 100), border_radius=20)
+d1 = pygame.draw.rect(screen, (0, 104, 0), (340, 10, 100, 100), border_radius=20)
+d2 = pygame.draw.rect(screen, (0, 104, 0), (340, 120, 100, 100), border_radius=20)
+d3 = pygame.draw.rect(screen, (0, 104, 0), (340, 230, 100, 100), border_radius=20)
+d4 = pygame.draw.rect(screen, (0, 104, 0), (340, 340, 100, 100), border_radius=20)
+d5 = pygame.draw.rect(screen, (0, 104, 0), (340, 450, 100, 100), border_radius=20)
+d6 = pygame.draw.rect(screen, (0, 104, 0), (340, 560, 100, 100), border_radius=20)
+d7 = pygame.draw.rect(screen, (0, 104, 0), (340, 670, 100, 100), border_radius=20)
+d8 = pygame.draw.rect(screen, (0, 104, 0), (340, 780, 100, 100), border_radius=20)
+e1 = pygame.draw.rect(screen, (0, 104, 0), (450, 10, 100, 100), border_radius=20)
+e2 = pygame.draw.rect(screen, (0, 104, 0), (450, 120, 100, 100), border_radius=20)
+e3 = pygame.draw.rect(screen, (0, 104, 0), (450, 230, 100, 100), border_radius=20)
+e4 = pygame.draw.rect(screen, (0, 104, 0), (450, 340, 100, 100), border_radius=20)
+e5 = pygame.draw.rect(screen, (0, 104, 0), (450, 450, 100, 100), border_radius=20)
+e6 = pygame.draw.rect(screen, (0, 104, 0), (450, 560, 100, 100), border_radius=20)
+e7 = pygame.draw.rect(screen, (0, 104, 0), (450, 670, 100, 100), border_radius=20)
+e8 = pygame.draw.rect(screen, (0, 104, 0), (450, 780, 100, 100), border_radius=20)
+f1 = pygame.draw.rect(screen, (0, 104, 0), (560, 10, 100, 100), border_radius=20)
+f2 = pygame.draw.rect(screen, (0, 104, 0), (560, 120, 100, 100), border_radius=20)
+f3 = pygame.draw.rect(screen, (0, 104, 0), (560, 230, 100, 100), border_radius=20)
+f4 = pygame.draw.rect(screen, (0, 104, 0), (560, 340, 100, 100), border_radius=20)
+f5 = pygame.draw.rect(screen, (0, 104, 0), (560, 450, 100, 100), border_radius=20)
+f6 = pygame.draw.rect(screen, (0, 104, 0), (560, 560, 100, 100), border_radius=20)
+f7 = pygame.draw.rect(screen, (0, 104, 0), (560, 670, 100, 100), border_radius=20)
+f8 = pygame.draw.rect(screen, (0, 104, 0), (560, 780, 100, 100), border_radius=20)
+g1 = pygame.draw.rect(screen, (0, 104, 0), (670, 10, 100, 100), border_radius=20)
+g2 = pygame.draw.rect(screen, (0, 104, 0), (670, 120, 100, 100), border_radius=20)
+g3 = pygame.draw.rect(screen, (0, 104, 0), (670, 230, 100, 100), border_radius=20)
+g4 = pygame.draw.rect(screen, (0, 104, 0), (670, 340, 100, 100), border_radius=20)
+g5 = pygame.draw.rect(screen, (0, 104, 0), (670, 450, 100, 100), border_radius=20)
+g6 = pygame.draw.rect(screen, (0, 104, 0), (670, 560, 100, 100), border_radius=20)
+g7 = pygame.draw.rect(screen, (0, 104, 0), (670, 670, 100, 100), border_radius=20)
+g8 = pygame.draw.rect(screen, (0, 104, 0), (670, 780, 100, 100), border_radius=20)
+h1 = pygame.draw.rect(screen, (0, 104, 0), (780, 10, 100, 100), border_radius=20)
+h2 = pygame.draw.rect(screen, (0, 104, 0), (780, 120, 100, 100), border_radius=20)
+h3 = pygame.draw.rect(screen, (0, 104, 0), (780, 230, 100, 100), border_radius=20)
+h4 = pygame.draw.rect(screen, (0, 104, 0), (780, 340, 100, 100), border_radius=20)
+h5 = pygame.draw.rect(screen, (0, 104, 0), (780, 450, 100, 100), border_radius=20)
+h6 = pygame.draw.rect(screen, (0, 104, 0), (780, 560, 100, 100), border_radius=20)
+h7 = pygame.draw.rect(screen, (0, 104, 0), (780, 670, 100, 100), border_radius=20)
+h8 = pygame.draw.rect(screen, (0, 104, 0), (780, 780, 100, 100), border_radius=20)
+cercle = pygame.draw.circle(screen,(255, 255, 255), d4.center, 45)
+cercle_2 = pygame.draw.circle(screen,(0, 0, 0), e4.center, 45)
+cercle_3 = pygame.draw.circle(screen,(0, 0, 0), d5.center, 45)
+cercle_4 = pygame.draw.circle(screen,(255, 255, 255), e5.center, 45)
 
-            # Vérifier chaque direction
-            for dl, dc in DIRS:
-                l, c = li + dl, col + dc
-                found_opponent = False
+cases = [a1, b1, c1, d1, e1, f1, g1, h1,
+         a2, b2, c2, d2, e2, f2, g2, h2,
+         a3, b3, c3, d3, e3, f3, g3, h3,
+         a4, b4, c4, d4, e4, f4, g4, h4,
+         a5, b5, c5, d5, e5, f5, g5, h5,
+         a6, b6, c6, d6, e6, f6, g6, h6,
+         a7, b7, c7, d7, e7, f7, g7, h7,
+         a8, b8, c8, d8, e8, f8, g8, h8]
 
-                # Tant qu'on voit l’adversaire
-                while 0 <= l < 8 and 0 <= c < 8 and game[l][c] == opponent:
-                    l += dl
-                    c += dc
-                    found_opponent = True
+# AFFICHAGE DES ÉLÉMENTS :
 
-                # Trouvé adversaire + joueur derrière → coup valide
-                if found_opponent and 0 <= l < 8 and 0 <= c < 8 and game[l][c] == player:
-                    valid.append((li, col))
-                    break
-
-    return valid
+pygame.display.update()
 
 
-# --- FONCTION : jouer un coup ---
-def play_move(li, col, player):
-    opponent = 2 if player == 1 else 1
-    game[li][col] = player
+# BOUCLE RUNNING :
 
-    # Retourner les pions
-    for dl, dc in DIRS:
-        l, c = li + dl, col + dc
-        path = []
-
-        while 0 <= l < 8 and 0 <= c < 8 and game[l][c] == opponent:
-            path.append((l, c))
-            l += dl
-            c += dc
-
-        if path and 0 <= l < 8 and 0 <= c < 8 and game[l][c] == player:
-            # Retourner
-            for (rl, rc) in path:
-                game[rl][rc] = player
-
-
-# --- AFFICHAGE ---
-def draw_board(valid_moves):
-    screen.fill(VERT_FOND)
-
-    # Cases
-    for li in range(8):
-        for col in range(8):
-            pygame.draw.rect(screen, (0, 100, 0),
-                             (col * TAILLE_CASE, li * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE), 2)
-
-            # Pions
-            if game[li][col] == 1:
-                pygame.draw.circle(screen, NOIR,
-                                   (col * TAILLE_CASE + 40, li * TAILLE_CASE + 40), 30)
-            elif game[li][col] == 2:
-                pygame.draw.circle(screen, BLANC,
-                                   (col * TAILLE_CASE + 40, li * TAILLE_CASE + 40), 30)
-
-    # Coups valides : petits cercles bleus
-    for (li, col) in valid_moves:
-        pygame.draw.circle(screen, BLEU,
-                           (col * TAILLE_CASE + 40, li * TAILLE_CASE + 40), 10)
-
-
-# --- MAIN LOOP ---
-clock = pygame.time.Clock()
-
-while True:
-    valid_moves = get_valid_moves(current_player)
-
-    # Vérification du clic pour l'easter egg
-
-
+running = True
+while running:
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-
         if event.type == pygame.MOUSEBUTTONDOWN:
-            x, y = event.pos
-            col = x // TAILLE_CASE
-            li = y // TAILLE_CASE
+            pos = event.pos
+            for i in cases:
+                if i.collidepoint(pos):
+                    if color_circle == (255, 255, 255):
+                        pygame.draw.circle(screen, color_circle, i.center, 45)
+                        color_circle = (0, 0, 0)
+                    elif color_circle == (0, 0, 0):
+                        pygame.draw.circle(screen, color_circle, i.center, 45)
+                        color_circle = (255, 255, 255)
+                    print(f"Position du clic : {pos}\nCase activée : {i}\n")
 
-            # Vérification du clic pour l'easter egg
-            if (li, col) == EASTER_EGG_TRIGGER:
-                easter_egg_counter += 1
+            pygame.display.update()
 
-                if easter_egg_counter == 5:
-                    show_easter_egg_popup()
+        if event.type == pygame.QUIT:
+            running = False
 
-            if (li, col) in valid_moves:
-                play_move(li, col, current_player)
-                current_player = 2 if current_player == 1 else 1
-
-    draw_board(valid_moves)
-
-    pygame.display.flip()
-    clock.tick(60)
+pygame.quit()
