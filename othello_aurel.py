@@ -1,4 +1,6 @@
 import pygame
+from tkinter.messagebox import *
+from pygame.examples.eventlist import showtext
 
 # DÉFINITION DES VARIABLES :
 
@@ -78,8 +80,7 @@ while running:
                                 update = update + 1
 
                     if cpt == 0:
-                        exit()
-
+                        showinfo(title="Fin du jeu !", message="Le jeu est fini, toutes les cases sont remplies !")
             pygame.display.update()
 
         if event.type == pygame.QUIT:
