@@ -21,7 +21,7 @@ pygame.display.set_caption("MA-24 : Bases de pygame")
 compteur = 0
 posx = 10
 cases = []
-for case in range(64):
+for case in range(8):
     posy = 10
     for column in range(8):
         if compteur == 27 or compteur == 36:
@@ -50,12 +50,21 @@ pygame.display.update()
 
 # BOUCLE RUNNING :
 
+o = 0
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             pos = event.pos
+            o = 0
             for i in cases:
+                try:
+                    if cases[o - 7][1] == 1 or cases[o - 8][1] == 1 or cases[o - 9][1] == 1 or cases[o + 7][1] == 1 or cases[o + 8][1] == 1 or cases[o + 9][1] == 1 or cases[o - 1][1] == 0 or cases[o + 1][1] == 1:
+                        print("Possible !")
+                    else:
+                        print("Impossible")
+                except IndexError:
+                    print("Impossible, Out of range")
                 if i[0].collidepoint(pos):
                     if i[1] > 0:
                         print('Impossible')
@@ -72,15 +81,17 @@ while running:
                             i = i[0], 2
                         print(f"Position du clic : {pos}\nPion posé à {i[0]}\n")
                         update = 0
-                        for test in cases:
-                            if i[0] == test[0]:
+                        for n in cases:
+                            if i[0] == n[0]:
                                 cases[update][1] = i[1]
                             else:
                                 update = update + 1
-
-                    if cpt == 0:
-                        showinfo(title="Fin du jeu !", message="Le jeu est fini, toutes les cases sont remplies !")
+                o = o + 1
+                print(o)
             pygame.display.update()
+            if cpt == 0:
+                showinfo(title="Fin du jeu !", message="Le jeu est fini, toutes les cases sont remplies !")
+
 
         if event.type == pygame.QUIT:
             running = False
