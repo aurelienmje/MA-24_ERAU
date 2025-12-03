@@ -1,6 +1,5 @@
 import pygame
 from tkinter.messagebox import *
-from pygame.examples.eventlist import showtext
 
 # DÉFINITION DES VARIABLES :
 
