@@ -35,8 +35,6 @@ for case in range(8):
             posy = posy + 110
         compteur = compteur + 1
     posx = posx + 110
-print(cases)
-print(cases[28][1])
 
 for cercle in cases:
     if cercle[1] == 1:
@@ -50,7 +48,7 @@ pygame.display.update()
 
 # BOUCLE RUNNING :
 
-o = 0
+impossible = 0
 running = True
 while running:
     for event in pygame.event.get():
@@ -58,17 +56,25 @@ while running:
             pos = event.pos
             o = 0
             for i in cases:
-                try:
-                    if cases[o - 7][1] == 1 or cases[o - 8][1] == 1 or cases[o - 9][1] == 1 or cases[o + 7][1] == 1 or cases[o + 8][1] == 1 or cases[o + 9][1] == 1 or cases[o - 1][1] == 0 or cases[o + 1][1] == 1:
-                        print("Possible !")
-                    else:
-                        print("Impossible")
-                except IndexError:
-                    print("Impossible, Out of range")
                 if i[0].collidepoint(pos):
+                    while not cases[o][0] == i[0]:
+                        o = o + 1
+                    try:
+                        if cases[o - 9][1] > 0 or cases[o - 8][1] > 0 or cases[o - 7][1] > 0 or cases[o - 1][1] > 0 or cases[o + 1][1] > 0 or cases[o + 7][1] > 0 or cases[o + 8][1] > 0 or cases[o + 9][1] > 0:
+                            impossible = 0
+                            print(cases[o - 9][1], cases[o - 8][1], cases[o - 7][1], cases[o - 1][1],
+                            cases[o + 1][1], cases[o + 7][1], cases[o + 8][1], cases[o + 9][1])
+                        else:
+                            impossible = 1
+                            print(o)
+                    except IndexError as error:
+                        print(error)
                     if i[1] > 0:
                         print('Impossible')
+                    elif impossible == 1:
+                        print('Impossible')
                     else:
+                        print(i)
                         cpt = cpt - 1
                         print(cpt)
                         if color_circle == (255, 255, 255):
@@ -86,8 +92,6 @@ while running:
                                 cases[update][1] = i[1]
                             else:
                                 update = update + 1
-                o = o + 1
-                print(o)
             pygame.display.update()
             if cpt == 0:
                 showinfo(title="Fin du jeu !", message="Le jeu est fini, toutes les cases sont remplies !")
