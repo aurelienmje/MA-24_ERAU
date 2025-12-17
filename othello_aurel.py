@@ -15,86 +15,100 @@ screen.fill((0,128,0))
 
 pygame.display.set_caption("MA-24 : Bases de pygame")
 
-
 # DÉFINITION DES CASES :
 
-compteur = 0
-posx = 10
-cases = []
-for case in range(8):
-    posy = 10
-    for column in range(8):
-        if compteur == 27 or compteur == 36:
-            cases = cases + [[pygame.draw.rect(screen, (0, 104, 0), (posx, posy, 100, 100), border_radius=20), 1]]
-            posy = posy + 110
-        elif compteur == 28 or compteur == 35:
-            cases = cases + [[pygame.draw.rect(screen, (0, 104, 0), (posx, posy, 100, 100), border_radius=20), 2]]
-            posy = posy + 110
-        else:
-            cases = cases + [[pygame.draw.rect(screen, (0, 104, 0), (posx, posy, 100, 100), border_radius=20), 0]]
-            posy = posy + 110
-        compteur = compteur + 1
-    posx = posx + 110
+def dessiner_cases():
+    compteur = 0
+    posx = 10
+    cases = []
+    for case in range(8):
+        posy = 10
+        for column in range(8):
+            if compteur == 27 or compteur == 36:
+                cases = cases + [[pygame.draw.rect(screen, (0, 104, 0), (posx, posy, 100, 100), border_radius=20), 1]]
+                posy = posy + 110
+            elif compteur == 28 or compteur == 35:
+                cases = cases + [[pygame.draw.rect(screen, (0, 104, 0), (posx, posy, 100, 100), border_radius=20), 2]]
+                posy = posy + 110
+            else:
+                cases = cases + [[pygame.draw.rect(screen, (0, 104, 0), (posx, posy, 100, 100), border_radius=20), 0]]
+                posy = posy + 110
+            compteur = compteur + 1
+        posx = posx + 110
 
-for cercle in cases:
-    if cercle[1] == 1:
-        pygame.draw.circle(screen, (255, 255, 255), cercle[0].center, 45)
-    elif cercle[1] == 2:
-        pygame.draw.circle(screen, (0, 0, 0), cercle[0].center, 45)
+    for cercle in cases:
+        if cercle[1] == 1:
+            pygame.draw.circle(screen, (255, 255, 255), cercle[0].center, 45)
+        elif cercle[1] == 2:
+            pygame.draw.circle(screen, (0, 0, 0), cercle[0].center, 45)
 
-# AFFICHAGE DES ÉLÉMENTS :
+    pygame.display.update()
+    return cases
 
-pygame.display.update()
+cases = dessiner_cases()
 
 # BOUCLE RUNNING :
 
-impossible = 0
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
+
+
             pos = event.pos
-            o = 0
+            clicx,clicy = pos
+            if clicx // 110 > 7:
+                columntest = 7
+            else:
+                columntest = clicx // 110
+            if clicy // 110 > 7:
+                casetest = 7
+            else:
+                casetest = clicy // 110
+            if columntest + casetest == 0 or columntest + casetest == 7 or columntest + casetest == 14:
+                bordcoin = "dans le coin"
+            elif columntest == 0 or columntest == 7 or casetest == 0 or casetest == 7:
+                bordcoin = "sur le bord"
+            else:
+                bordcoin = "au milieu"
+            print(f"Colone {columntest}, case {casetest} se situe {bordcoin}")
+
+
             for i in cases:
+                if i[0][0] // 110 > 7:
+                    icolone = 7
+                else:
+                    icolone = i[0][0] // 110
+                if i[0][1] // 110 > 7:
+                    icase = 7
+                else:
+                    icase = i[0][1] // 110
+
                 if i[0].collidepoint(pos):
-                    while not cases[o][0] == i[0]:
-                        o = o + 1
-                    try:
-                        if cases[o - 9][1] > 0 or cases[o - 8][1] > 0 or cases[o - 7][1] > 0 or cases[o - 1][1] > 0 or cases[o + 1][1] > 0 or cases[o + 7][1] > 0 or cases[o + 8][1] > 0 or cases[o + 9][1] > 0:
-                            impossible = 0
-                            print(cases[o - 9][1], cases[o - 8][1], cases[o - 7][1], cases[o - 1][1],
-                            cases[o + 1][1], cases[o + 7][1], cases[o + 8][1], cases[o + 9][1])
-                        else:
-                            impossible = 1
-                            print(o)
-                    except IndexError as error:
-                        print(error)
                     if i[1] > 0:
                         print('Impossible')
-                    elif impossible == 1:
-                        print('Impossible')
                     else:
-                        print(i)
                         cpt = cpt - 1
-                        print(cpt)
                         if color_circle == (255, 255, 255):
-                            pygame.draw.circle(screen, color_circle, i[0].center, 45)
+                            cercle = pygame.draw.circle(screen, color_circle, i[0].center, 45)
                             color_circle = (0, 0, 0)
                             i = i[0], 1
                         elif color_circle == (0, 0, 0):
                             pygame.draw.circle(screen, color_circle, i[0].center, 45)
                             color_circle = (255, 255, 255)
                             i = i[0], 2
-                        print(f"Position du clic : {pos}\nPion posé à {i[0]}\n")
+
                         update = 0
                         for n in cases:
                             if i[0] == n[0]:
                                 cases[update][1] = i[1]
                             else:
                                 update = update + 1
+
             pygame.display.update()
             if cpt == 0:
                 showinfo(title="Fin du jeu !", message="Le jeu est fini, toutes les cases sont remplies !")
+                cases = dessiner_cases()
 
 
         if event.type == pygame.QUIT:
