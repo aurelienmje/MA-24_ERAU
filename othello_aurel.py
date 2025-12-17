@@ -86,7 +86,7 @@ while running:
 
                 if i[0].collidepoint(pos):
                     if i[1] > 0:
-                        print('Impossible')
+                        print("Impossible")
                     else:
                         cpt = cpt - 1
                         if color_circle == (255, 255, 255):
