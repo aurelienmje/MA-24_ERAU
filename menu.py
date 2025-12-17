@@ -26,7 +26,7 @@ def draw_menu():
     screen.fill(GREEN)
 
 
-    title = font.render("BRAWL STAR", True, BLACK)
+    title = font.render("¦__ERAU-GAME__¦", True, BLACK)
     screen.blit(title, (WIDTH//2 - title.get_width()//2, 50))
 
 
