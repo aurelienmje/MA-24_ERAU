@@ -9,13 +9,13 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("menu OOHTLEO")
 
 # Couleurs
-WHITE = (0, 205, 10)
+GREEN = (28, 199, 28)
 BLACK = (0, 0, 0)
-GRAY = (255, 250, 250)
-BLUE = (22, 0, 205)
+GRAY = (38, 240, 219)
+BLUE = (42, 94, 86)
 
 
-font = pygame.font.Font(None, 50)
+font = pygame.font.Font(None, 70)
 button_font = pygame.font.Font(None, 36)
 
 
@@ -23,10 +23,10 @@ play_button = pygame.Rect(200, 150, 200, 50)
 quit_button = pygame.Rect(200, 230, 200, 50)
 
 def draw_menu():
-    screen.fill(WHITE)
+    screen.fill(GREEN)
 
 
-    title = font.render("MENU OOTHLEO", True, BLACK)
+    title = font.render("JEU DU REVERSI", True, BLACK)
     screen.blit(title, (WIDTH//2 - title.get_width()//2, 50))
 
 
@@ -34,8 +34,8 @@ def draw_menu():
     pygame.draw.rect(screen, GRAY, quit_button)
 
 
-    play_text = button_font.render("Jouer", True, WHITE)
-    quit_text = button_font.render("Quitter", True, WHITE)
+    play_text = button_font.render("JOUER", True, GREEN)
+    quit_text = button_font.render("QUITTER", True, GREEN)
 
     screen.blit(play_text, (play_button.centerx - play_text.get_width()//2,
                              play_button.centery - play_text.get_height()//2))
