@@ -6,7 +6,7 @@ pygame.init()
 
 WIDTH, HEIGHT = 600, 400
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("menu OOHTLEO")
+pygame.display.set_caption("menu othello")
 
 # Couleurs
 GREEN = (28, 199, 28)
@@ -26,7 +26,7 @@ def draw_menu():
     screen.fill(GREEN)
 
 
-    title = font.render("JEU DU REVERSI", True, BLACK)
+    title = font.render("BRAWL STAR", True, BLACK)
     screen.blit(title, (WIDTH//2 - title.get_width()//2, 50))
 
 
