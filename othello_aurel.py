@@ -107,7 +107,7 @@ while running:
 
             pygame.display.update()
             if cpt == 0:
-                showinfo(title="Fin du jeu !", message="Le jeu est fini, toutes les cases sont remplies !")
+                showinfo(title="bravo! Fin du jeu !", message="Le jeu est fini, toutes les cases sont remplies !")
                 cases = dessiner_cases()
 
 
