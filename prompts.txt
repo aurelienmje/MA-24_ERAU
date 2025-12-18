@@ -1,0 +1,6 @@
+LE 18.12.2025
+
+dis moi comment faire les règles de l'othello suivant : github.com/aurelienmje/MA-24_ERAU
+#(Après son refus, je lui ai donné mes "anciens" codes directement dans la discussion)
+
+comment afficher les coups posibles ? dis moi juste le code et ou l'ajouter
