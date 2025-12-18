@@ -1,5 +1,4 @@
 import pygame
-from tkinter.messagebox import *
 
 # DÉFINITION DES VARIABLES :
 
