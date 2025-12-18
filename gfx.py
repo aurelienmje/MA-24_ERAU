@@ -44,3 +44,4 @@ def dessiner_cases():
     return cases
 
 cases = dessiner_cases()
+print(cases)
