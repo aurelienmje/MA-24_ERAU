@@ -1,61 +1,33 @@
-import pygame
-import sys
+from tkinter import *
+import tkinter.font as tkFont
 
-pygame.init()
+def start():
+    main.destroy()
 
+main = Tk()
+main.geometry("800x800")
 
-WIDTH, HEIGHT = 600, 400
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("menu othello")
+main.configure(bg="green")
 
-# Couleurs
-GREEN = (28, 199, 28)
-BLACK = (0, 0, 0)
-GRAY = (38, 240, 219)
-BLUE = (42, 94, 86)
+custom_font = tkFont.Font(family="Impact", size=150)
+custom_font_btn = tkFont.Font(family="Impact", size=50)
+custom_font_sur = tkFont.Font(family="Impact", size=25)
 
+frm_titre = Frame(main)
+frm_titre.configure(bg="green")
+frm_titre.pack(pady=100)
 
-font = pygame.font.Font(None, 70)
-button_font = pygame.font.Font(None, 36)
+surtitre = Label(frm_titre, text="Le meilleur jeu d'")
+surtitre.configure(font=custom_font_sur, bg="green")
+surtitre.pack(anchor=NW, padx=20,)
 
+titre = Label(frm_titre, text="Othello")
+titre.configure(font=custom_font, bg="green")
+titre.pack(anchor=W)
 
-play_button = pygame.Rect(200, 150, 200, 50)
-quit_button = pygame.Rect(200, 230, 200, 50)
-
-def draw_menu():
-    screen.fill(GREEN)
-
-
-    title = font.render("¦__ERAU-GAME__¦", True, BLACK)
-    screen.blit(title, (WIDTH//2 - title.get_width()//2, 50))
-
-
-    pygame.draw.rect(screen, BLUE, play_button)
-    pygame.draw.rect(screen, GRAY, quit_button)
+jouer = Button(main, text="Jouer !", command=start)
+jouer.configure(font=custom_font_btn)
+jouer.pack()
 
 
-    play_text = button_font.render("JOUER", True, GREEN)
-    quit_text = button_font.render("QUITTER", True, GREEN)
-
-    screen.blit(play_text, (play_button.centerx - play_text.get_width()//2,
-                             play_button.centery - play_text.get_height()//2))
-    screen.blit(quit_text, (quit_button.centerx - quit_text.get_width()//2,
-                             quit_button.centery - quit_text.get_height()//2))
-
-    pygame.display.flip()
-
-
-running = True
-while running:
-    draw_menu()
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-
-        if event.type == pygame.MOUSEBUTTONDOWN:
-
-            if quit_button.collidepoint(event.pos):
-                pygame.quit()
-                sys.exit()
+main.mainloop()
