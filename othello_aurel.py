@@ -5,6 +5,7 @@ from tkinter.messagebox import *
 
 color_circle = (0, 0, 0)
 cpt = 60
+easter_clicks = 0
 
 # PRÉPARATION DE PYGAME ET DE LA FENÊTRE
 
@@ -13,7 +14,7 @@ pygame.init()
 screen = pygame.display.set_mode((890,890))
 screen.fill((0,128,0))
 
-pygame.display.set_caption("MA-24 : Bases de pygame")
+pygame.display.set_caption("MA-24 : jeu d'Othello")
 
 # DÉFINITION DES CASES :
 
@@ -48,11 +49,45 @@ def dessiner_cases():
 cases = dessiner_cases()
 
 # BOUCLE RUNNING :
+def easter_egg():
+    showinfo(
+        title="🎉 Easter Egg 🎉",
+        message=
+"""Ce jeu a été codé par :
+
+Aurélien
+Eran
+et avec l'aide de ChatGPT 😄
+
+   (•‿•)
+  <)   )╯
+   /   \
+
+Bravo, tu as trouvé le secret !
+"""
+    )
 
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
+
+            pos = event.pos
+            clicx, clicy = pos
+
+            col = clicx // 110
+            lig = clicy // 110
+
+            # ===== EASTER EGG =====
+
+            if col == 7 and lig == 0:  # coin haut droite
+                easter_clicks += 1
+                if easter_clicks == 6:
+                    easter_egg()
+                    easter_clicks = 0
+                continue  # ⬅️ empêche toute pose de pion
+            else:
+                easter_clicks = 0
 
 
             pos = event.pos
