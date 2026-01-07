@@ -17,6 +17,13 @@
 
 <s>Hello</s>
 
-<p style="color: red;">Hello</p>
+_hey_
+**Hey**
 
-<h1 style="font-size: 10000%">👍</h1>
+<details>
+<summary>Hey</summary>
+Salut les gens
+</details>
+
+> 1
+> >2
