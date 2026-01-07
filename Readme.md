@@ -1,3 +1,20 @@
+# Jeu de l'othello
+Par Eran et Aurélien
+
+## Table des matières
+
+1. [Description du projet](#description)
+
+<p style="color: transparent;">hey</p>
+
+## Description
+
+Ce jeu est un jeu d'othello codé comme exercice au [**CPNV**](https://www.cpnv.ch)
+
+
+
+
+
 # Hello
 ## Hello
 ### Hello
@@ -25,5 +42,4 @@ _hey_
 Salut les gens
 </details>
 
-> 1
-> >2
+1. [ ] [Color](#Présentation)
