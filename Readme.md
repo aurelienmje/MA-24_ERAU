@@ -19,22 +19,4 @@
 
 <p style="color: red;">Hello</p>
 
-<style>
-
-    body {
-        animation: test 5s infinite;
-    }
-
-    @keyframes test {
-    0% {
-        background-color: cornflowerblue;
-    }
-    50% {
-        background-color: indianred;
-    }
-    100% {
-        background-color: cornflowerblue;
-    }
-</style>
-
-<button>Hello</button>
+<h1 style="font-size: 1000%">👍</h1>
