@@ -19,4 +19,4 @@
 
 <p style="color: red;">Hello</p>
 
-<h1 style="font-size: 1000%">👍</h1>
+<h1 style="font-size: 10000%">👍</h1>
