@@ -4,11 +4,17 @@ import tkinter.font as tkFont
 def start():
     main.destroy()
 
+
+def on_close():
+    global start_game
+    start_game = False  # l'utilisateur a fermé la fenêtre
+    main.destroy()
+
 main = Tk()
 main.geometry("800x800")
 
 main.configure(bg="green")
-
+main.protocol("WM_DELETE_WINDOW", on_close)
 custom_font = tkFont.Font(family="Impact", size=150)
 custom_font_btn = tkFont.Font(family="Impact", size=50)
 custom_font_sur = tkFont.Font(family="Impact", size=25)
