@@ -1,7 +1,9 @@
 from tkinter import *
 import tkinter.font as tkFont
-
+start_game = False
 def start():
+    global start_game
+    start_game = True
     main.destroy()
 
 
