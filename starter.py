@@ -6,7 +6,25 @@ import gfx
 
 # logique : joueur courant 1 = noir, -1 = blanc. On commence noir.
 player = 1
+easter_clicks = 0  # compteur pour l'easter egg
 
+def easter_egg():
+    showinfo(
+        title="🎉 Easter Egg 🎉",
+        message=
+"""Ce jeu a été codé par :
+
+Aurélien
+Eran
+et avec l'aide de ChatGPT 😄
+
+   (•‿•)
+  <)   )╯
+   /   \\
+
+Bravo, tu as trouvé le secret !
+"""
+    )
 def coord_from_rect(rect):
     # find board coordinates stored in rect entry
     for entry in gfx.cases:
@@ -19,6 +37,15 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             pos = event.pos
+            # Coin haut-droite : zone de 100x100 pixels en haut à droite du plateau
+            if pos[0] >= gfx.screen.get_width() - 110 and pos[0] <= gfx.screen.get_width() - 10 and pos[1] >= 10 and \
+                    pos[1] <= 110:
+                easter_clicks += 1
+                if easter_clicks == 6:
+                    easter_egg()
+                    easter_clicks = 0
+            else:
+                easter_clicks = 0
             clicked_rect = None
             for entry in gfx.cases:
                 if entry[0].collidepoint(pos):
@@ -30,7 +57,9 @@ while running:
             if rc is None:
                 continue
             r,c = rc
+
             valid, flips = gfx.is_valid_move(gfx.board, player, r, c)
+
             if not valid:
                 print("Coup invalide")
             else:
