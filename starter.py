@@ -48,9 +48,9 @@ while running:
                         black = sum(1 for row in gfx.board for v in row if v == 1)
                         white = sum(1 for row in gfx.board for v in row if v == -1)
                         if black > white:
-                            showinfo(title="Fin du jeu", message=f"Noir gagne {black} à {white}")
+                            showinfo(title="Fin du jeu", message=f"Les Noirs gagnent {black} à {white}")
                         elif white > black:
-                            showinfo(title="Fin du jeu", message=f"Blanc gagne {white} à {black}")
+                            showinfo(title="Fin du jeu", message=f"Les Blancs gagnent {white} à {black}")
                         else:
                             showinfo(title="Fin du jeu", message=f"Égalité {black} à {white}")
                         gfx.board = gfx.initial_board()
