@@ -1,5 +1,9 @@
 import pygame
 import menu
+
+if not menu.start_game == True:
+    exit()
+
 from menu import *
 from tkinter.messagebox import *
 import gfx
@@ -21,7 +25,7 @@ et avec l'aide de ChatGPT 😄
    (•‿•)
   <)   )╯
    /   \\
-
+                                                                         
 Bravo, tu as trouvé le secret !
 """
     )
